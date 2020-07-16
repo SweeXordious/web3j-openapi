@@ -139,15 +139,13 @@ internal class ResourcesImplGenerator(
     }
 
     private fun wrapCode(code: String, returnType: String): String {
-        return if (returnType.startsWith("org.web3j.openapi.core.models.TransactionReceiptModel"))
-            "return TransactionReceiptModel($code)"
-        else if (returnType.startsWith("org.web3j.openapi.core.models.PrimitivesModel"))
-            "return $returnType($code)"
-        else if (returnType.startsWith("org.web3j.tuples")) {
-            wrapTuplesCode(code, returnType)
-        } else if (returnType.contains("StructModel"))
-            "return $code.toModel()"
-        else "return $code"
+        return when {
+            returnType.startsWith("org.web3j.openapi.core.models.TransactionReceiptModel") -> "return TransactionReceiptModel($code)"
+            returnType.startsWith("org.web3j.openapi.core.models") -> "return $returnType($code)"
+            returnType.startsWith("org.web3j.tuples") -> wrapTuplesCode(code, returnType)
+            returnType.contains("StructModel") -> "return $code.toModel()"
+            else -> "return $code"
+        }
     }
 
     private fun wrapTuplesCode(code: String, returnType: String): String {

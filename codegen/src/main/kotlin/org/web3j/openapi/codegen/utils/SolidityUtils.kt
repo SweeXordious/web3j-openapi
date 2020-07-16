@@ -81,9 +81,10 @@ fun getNumbersMapping(isParameter: Boolean, type: String): TypeName {
 }
 
 private fun getParameterMapping(isParameter: Boolean, kClass: KClass<*>): TypeName {
-    return if (isParameter) kClass.asTypeName()
-    else {
-        ClassName("org.web3j.openapi.core.models", "PrimitivesModel")
+    return when {
+        isParameter -> kClass.asTypeName()
+        kClass == ByteArray::class -> ClassName("org.web3j.openapi.core.models", "ByteArrayModel")
+        else -> ClassName("org.web3j.openapi.core.models", "PrimitivesModel")
             .parameterizedBy(kClass.asClassName())
     }
 }
