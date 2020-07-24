@@ -12,7 +12,6 @@
  */
 package org.web3j.openapi.server.config
 
-import org.web3j.abi.datatypes.Address
 import java.io.File
 import java.net.URL
 

@@ -14,7 +14,6 @@ package org.web3j.openapi.server
 
 import mu.KLogging
 import org.glassfish.hk2.api.Factory
-import org.web3j.abi.datatypes.Address
 import org.web3j.crypto.Credentials
 import org.web3j.crypto.WalletUtils
 import org.web3j.openapi.server.Properties.CONTRACT_ADDRESSES
