@@ -12,6 +12,7 @@
  */
 package org.web3j.openapi.server.config
 
+import org.web3j.abi.datatypes.Address
 import java.io.File
 import java.net.URL
 
@@ -22,7 +23,8 @@ data class OpenApiServerConfig(
     val walletFile: File? = null,
     val walletPassword: String? = null,
     val host: String,
-    val port: Int
+    val port: Int,
+    val contractAddresses: ContractAddresses?
 ) {
     init {
         if (privateKey == null && walletFile == null) {
