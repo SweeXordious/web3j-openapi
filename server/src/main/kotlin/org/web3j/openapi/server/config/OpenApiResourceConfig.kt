@@ -38,7 +38,6 @@ import org.web3j.openapi.server.CredentialsFactory
 import org.web3j.openapi.server.ContractAddressesFactory
 import org.web3j.openapi.server.Web3jFactory
 import org.web3j.openapi.server.spi.OpenApiResourceProvider
-import org.web3j.openapi.server.NotFoundExceptionMapper
 import org.web3j.protocol.Web3j
 import org.web3j.tx.gas.ContractGasProvider
 import java.util.ServiceLoader
@@ -92,7 +91,6 @@ class OpenApiResourceConfig(
         register(JsonParseExceptionMapper::class.java)
         register(TransactionExceptionMapper::class.java)
         register(UnsupportedOperationExceptionMapper::class.java)
-        register(NotFoundExceptionMapper::class.java)
         register(JacksonJaxbJsonProvider(mapper, arrayOf(Annotations.JACKSON)))
         register(LoggingFeature(logger))
         register(InjectionBinder())
